@@ -1,0 +1,24 @@
+h1 {
+	text-align: center;
+}
+p {
+	text-align: center;
+	margin: 0;
+}
+select {
+	font-size: 20pt;
+	width: 10%;
+	padding-top: 10%;
+	margin: 0;
+	border: 0px white solid;
+}
+
+.row2 {
+	border-top: 2px black solid;
+	border-bottom: 2px black solid;
+}
+
+.col2 {
+	border-right: 2px black solid; 
+	border-left: 2px black solid;
+}

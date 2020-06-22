@@ -1,0 +1,15 @@
+p {
+	width: 50%;
+	height: 50%;
+	border: 2px blue solid;
+	padding: 20px;
+	padding-bottom: 40px;
+	margin: auto;
+	/*or padding and margin can do as (margin: 1px 2px auto 4px) for (top right bottom left)*/
+	/*or (margin: 0px 10px) for (top/bottom right/left)*/
+}
+
+/*width and height*/
+/*border*/
+/*padding (area between the content and the border)*/\
+/*margin (area between different boxes*/

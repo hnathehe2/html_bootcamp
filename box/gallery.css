@@ -1,0 +1,18 @@
+div {
+	width: 20%;
+}
+
+#hello {
+	background-color: blue;
+}
+
+#gg {
+	background-color: red;
+}
+
+img {
+	width: 30%;
+	height: 400px;
+	float: left;
+	margin: 1.6%;
+}
