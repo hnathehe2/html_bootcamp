@@ -5,16 +5,20 @@ var special_one = Math.floor(Math.random()*squares.length);
 console.log(special_one);
 var score = 0;
 var score_display = document.querySelector("#score_display");
-var time_display = document.querySelector("#time_display"); var time = 500;
+var time_display = document.querySelector("#time_display"); var time;
 var game_end = false;
+var new_game = document.querySelector("#new_game")
+new_game.addEventListener("click", newgame);
+var inter;
 
 document.cookie = "username=test";
 document.cookie = "name=oeschger";
 alertCookie();
+
 function alertCookie() {
   alert(document.cookie);
 }
-init_function();
+
 function random_color(){
 	var r; var d_r = 1;
 	var b; var d_b = 1;
@@ -23,9 +27,9 @@ function random_color(){
 	b = Math.floor(Math.random()*256);
 	g = Math.floor(Math.random()*256);
 	color = "rgb(" + r + ", " + g + ", " + b + ")";
-	if (Math.floor(Math.random())==0) d_r = -1;
-	if (Math.floor(Math.random())==0) d_g = -1;
-	if (Math.floor(Math.random())==0) d_b = -1;
+	if (Math.random()>0.5) d_r = -1;
+	if (Math.random()>0.5) d_g = -1;
+	if (Math.random()>0.5) d_b = -1;
 	d_r = d_r * diff;
 	d_g = d_g * diff;
 	d_b = d_b * diff;
@@ -40,6 +44,19 @@ function reset_function(){
 		else
 			squares[i].removeEventListener("click", right_one);
 	console.log("done reset");
+}
+
+function newgame(){
+	score = 0;
+	score_display.textContent = score;
+	time_display.textContent = time/100;
+	clearInterval(inter);
+	reset_function();
+	diff = 50.0;
+	time = 500;
+	game_end = false;
+	init_function();
+	inter = setInterval(time_remain, 10);
 }
 
 function wrong_one(){
@@ -87,5 +104,3 @@ function time_remain()
 		clearInterval(inter);
 	}
 }
-
-var inter = setInterval(time_remain,10);
