@@ -12,7 +12,7 @@ new_game.addEventListener("click", newgame);
 var inter;
 
 document.cookie = "highscore = 0";
-
+var x= document.cookie;
 function random_color(){
 	var r; var d_r = 1;
 	var b; var d_b = 1;
