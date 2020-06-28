@@ -11,13 +11,7 @@ var new_game = document.querySelector("#new_game")
 new_game.addEventListener("click", newgame);
 var inter;
 
-document.cookie = "username=test";
-document.cookie = "name=oeschger";
-alertCookie();
-
-function alertCookie() {
-  alert(document.cookie);
-}
+document.cookie = "highscore = 0";
 
 function random_color(){
 	var r; var d_r = 1;
