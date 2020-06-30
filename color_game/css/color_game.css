@@ -4,14 +4,37 @@ body {
 
 #info {
 	padding-left: 10%;
+	background: steelblue;
+	font-family: "Monsterrat", "Avenir";
 }
 
+h3 {
+	transition: all 1.0s;
+}
+
+h3:hover{
+	color: red;
+}
+
+h1 {
+	align-self: : center;
+	color: white;
+	font-weight: normal;
+}
+
+#new_game {
+	text-transform: uppercase;
+}
 .square {
+	border-radius: 15%;
 	width: 30%;
 	background-color: black;
 	padding-bottom: 30%;
 	float: left;
-		margin: 1.66%;
+	margin: 1.66%;
+	transition: all 0.5s;
+	-webkit-transition: all 0.5s;
+	-moz-transition: all 0.5s;
 }
 
 #container {

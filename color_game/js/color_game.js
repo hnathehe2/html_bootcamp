@@ -1,18 +1,18 @@
 var squares = document.querySelectorAll(".square");
-var color; var d_color;
-var diff = 50.0;
+var color; var d_color; var diff = 50.0;
 var special_one = Math.floor(Math.random()*squares.length);
 console.log(special_one);
 var score = 0;
 var score_display = document.querySelector("#score_display");
-var time_display = document.querySelector("#time_display"); var time;
+var time_display = document.querySelector("#time_display"); var time; 
 var game_end = false;
-var new_game = document.querySelector("#new_game")
+var new_game = document.querySelector("#new_game");
 new_game.addEventListener("click", newgame);
 var inter;
+var high_score;
+var highscore_display = document.querySelector("#highscore_display");
+checkCookie();
 
-document.cookie = "highscore = 0";
-var x= document.cookie;
 function random_color(){
 	var r; var d_r = 1;
 	var b; var d_b = 1;
@@ -24,11 +24,17 @@ function random_color(){
 	if (Math.random()>0.5) d_r = -1;
 	if (Math.random()>0.5) d_g = -1;
 	if (Math.random()>0.5) d_b = -1;
+	if (r < diff) d_r = 1;
+	if (g < diff) d_g = 1;
+	if (b < diff) d_b = 1;
+	if (r + diff >= 255) d_r = -1;
+	if (g + diff >= 255) d_g = -1;
+	if (b + diff >= 255) d_b = -1;
 	d_r = d_r * diff;
 	d_g = d_g * diff;
 	d_b = d_b * diff;
 	d_color = "rgb(" + Math.max(Math.min(r+d_r,255),0) + ", " + Math.max(Math.min(g+d_g,255),0) + ", " + Math.max(Math.min(b+d_b,255),0) + ")";
-	diff = diff * 0.9;
+	diff = diff * 0.95;
 }
 
 function reset_function(){
@@ -37,7 +43,6 @@ function reset_function(){
 			squares[i].removeEventListener("click", wrong_one);
 		else
 			squares[i].removeEventListener("click", right_one);
-	console.log("done reset");
 }
 
 function newgame(){
@@ -54,16 +59,22 @@ function newgame(){
 }
 
 function wrong_one(){
+	clearInterval(inter);
 	console.log("nope");
 	game_end = true;
-	alert("game over");
 	reset_function();
+	alert("game over");
 }
 
 function right_one(){
 	time+=200
 	score++;
 	score_display.textContent = score;
+	if (score>parseInt(high_score))
+		{
+			setCookie("highscore",score);
+			highscore_display.textContent = score;
+		}
 	console.log("yes");
 	reset_function();
 	special_one =  Math.floor(Math.random()*squares.length);
@@ -97,4 +108,33 @@ function time_remain()
 		reset_function();
 		clearInterval(inter);
 	}
+}
+
+function setCookie(cname, cvalue) {
+  document.cookie = cname + "=" + cvalue;
+}
+
+function getCookie(cname) {
+  var name = cname + "=";
+  var ca = document.cookie.split(';');
+  for(var i = 0; i < ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
+function checkCookie() {
+  	high_score = getCookie("highscore");
+  	if (high_score=="")
+	{
+		document.cookie = "highscore=0";
+		high_score = "0";
+	}
+	highscore_display.textContent = high_score;
 }
